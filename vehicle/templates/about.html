@@ -1,0 +1,28 @@
+{% load static %}
+{% block body %}
+<html>
+<head>
+{% include 'header.html' %}
+
+</head>
+<body>
+{% include 'navigation.html' %}
+
+<div class="container" style = "margin-top : 80px">
+      <h1 class = text-center style = "font-family : 'Monotype Corsiva' ; color : #E6120E">About Us</h1>
+	  <br><br>
+      <div class="row">
+          <div class="col-sm-4 text-center">
+              <img src="{% static 'images/about.jpg' %}" width=300 height = 200 class="img-responsive">
+          </div>
+          <div class="col-sm-8" style = "font-weight : bold ; margin-top : 30px">
+              Hello Friends , This is Simple Vehicle Parking Management Project Developed By Parking Management Team using HTML , CSS , Javascript , Python and Sqlite.
+          </div>
+      </div>
+  </div>
+  
+  {% include 'footer.html' %}
+
+  </body>
+  </html>
+{% endblock %}

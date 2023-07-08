@@ -1,0 +1,97 @@
+{% load static %}
+
+<html>
+<head>
+{% include 'headeradmin.html' %}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<style>
+.glow {
+  font-size: 80px;
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px orange, 0 0 40px orange, 0 0 50px orange, 0 0 60px orange, 0 0 70px orange;
+  }
+
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px lightgrey, 0 0 40px lightgrey, 0 0 50px lightgrey, 0 0 60px lightgrey, 0 0 70px lightgrey, 0 0 80px lightgrey;
+  }
+}
+
+
+
+.prjdiv:hover{
+transform:translateY(-10px)
+}
+div .container1{
+
+
+background-color:lightgrey;
+border-radius:8px;
+}
+h2, h4{
+ padding:10Px;
+}
+
+</style>
+
+
+
+</head>
+<body>
+{% if user.is_superuser %}
+{% include 'nav2admin.html' %}
+{% else %}
+{% include 'navigation.html' %}
+{% endif %}
+
+<div class="pt-5">
+  <br> &nbsp;&nbsp;Welcome <b style = 'text-transform : capitalize ; color : blue'>{{request.user.username}}</b>
+  </div>
+
+
+<div class="container" style = "margin-top:110px">
+
+<div class = "row">
+<div class = "col-sm-3 mydivstyle" >
+<h2 style = "color : blue ; font-weight : bold ; text-align : center">Todays Vehicle Entries</h2>
+<h3 class= "mt-3" style = "color : green ; font-weight : bold ; text-align : center">{{tv}} <i class="fa fa-car"></i></h3>
+</div>
+<div class = "col-sm-3 mydivstyle">
+<h2 style = "color : blue ; font-weight : bold ; text-align : center">Yesterdays Vehicle Entries</h2>
+    <h3 class= "mt-3" style = "color : green ; font-weight : bold ; text-align : center">{{yv}} <i class="fa fa-car"></i></h3>
+</div>
+
+    <div class = "col-sm-3 mydivstyle" >
+<h2 style = "color : blue ; font-weight : bold ; text-align : center">Last 7 days Vehicle Entries</h2>
+<h3 class= "mt-3" style = "color : green ; font-weight : bold ; text-align : center">{{ls}} <i class="fa fa-car"></i></h3>
+</div>
+<div class = "col-sm-3 mydivstyle">
+<h2 style = "color : blue ; font-weight : bold ; text-align : center">Total Vehicle </br>Entries</h2>
+    <h3 class= "mt-3" style = "color : green ; font-weight : bold ; text-align : center">{{totalv}} <i class="fa fa-car"></i></h3>
+</div>
+
+</div>
+</div>
+
+<footer class="container pt-5 mt-5 text-center">
+            <p style = "font-size : 30pt ; color : #FF0000 ; font-weight : bold">
+
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All Rights Reserved
+                <span style = "color : brown">|</span>
+                <span style = "color : #006400">This website is made with <i class="fas fa-heart icon-heart text-warning"></i> by </span><a class= "glow" href="#" target="_blank">Vehicle Parking</a>
+
+            </p>
+    </footer>
+
+
+</body>
+</html>
+

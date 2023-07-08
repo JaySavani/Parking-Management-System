@@ -1,0 +1,102 @@
+{% load static %} {% block body %}
+<html>
+  <head>
+    {% include 'header.html' %}
+    <link href="{% static 'index/style.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    {% include 'navigation.html' %}
+
+    {% comment %} <!-- carousel start-->
+    <div
+      id="demo"
+      class="carousel slide"
+      data-ride="carousel"
+      style="margin-top: 1px"
+    > {% endcomment %}
+      {% comment %}
+      <!-- Indicators -->
+      <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+      </ul>
+
+      <!-- The slideshow -->
+      <div class="carousel-inner">
+        <div class="carousel-item">
+          <img src="{% static 'images/2.gif' %}" width="100%" height="500" />
+        </div>
+        <div class="carousel-item active">
+          <img src="{% static 'images/1.jpg' %}" width="100%" height="500" />
+        </div>
+      </div>
+
+      <!-- Left and right controls -->
+      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
+    </div>
+    {% endcomment %}
+    
+    <div class="sky">
+      <div class="tree"></div>
+      <div class="track"></div>
+      <div class="car" id="demo"></div>
+      <div class="wheel wheel1"></div>
+      <div class="wheel wheel2"></div>
+    </div>
+
+    <!--animation end-->
+    <div class="container-fluid" style="height: 150px; background-color: black">
+      <br /><br />
+      <h4 class="text-center text-white">
+        Online Vehicle Parking Management System
+      </h4>
+      <p class="text-center text-primary">
+        &copy; 2022 Online Parking Softwares
+      </p>
+    </div>
+
+    <!--scrolltop start-->
+    <div class="scrolltop float-right">
+      <i class="fa fa-arrow-up" onclick="topFunction()" id="scrollbtn"></i>
+    </div>
+    <script>
+      scrollbutton = document.getElementById("scrollbtn");
+      window.onscroll = function () {
+        scrollFunction();
+      };
+
+      function scrollFunction() {
+        if (
+          document.body.scrollTop > 20 ||
+          document.documentElement.scrollTop > 20
+        ) {
+          scrollbutton.style.display = "block";
+        } else {
+          scrollbutton.style.display = "none";
+        }
+      }
+
+      function topFunction() {
+        document.body.scrollTop = 0; //safari
+        document.documentElement.scrollTop = 0; //for chrome
+      }
+      document.getElementById("demo").addEventListener("click", function(){
+        var audio = document.createElement('audio');
+        audio.setAttribute('src', '{% static 'index/sound.mp3' %}');
+        audio.loop=false;
+        audio.play();
+      }
+      )
+    </script>
+
+    {% include 'footer.html' %}
+    
+
+  </body>
+</html>
+{% endblock %}

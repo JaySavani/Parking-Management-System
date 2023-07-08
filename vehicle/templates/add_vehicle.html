@@ -1,0 +1,119 @@
+{% load static %}
+<html>
+
+<head>
+    {% include 'headeradmin.html' %}
+
+</head>
+
+<body>
+
+    {% if user.is_superuser %}
+    {% include 'nav2admin.html' %}
+    {% else %}
+    {% include 'navigation.html' %}
+    {% endif %}
+
+
+    <div class="pt-5">
+        <br> &nbsp;&nbsp;Welcome <b style='text-transform : capitalize ; color : blue'>{{request.user.username}}</b>
+    </div>
+
+    <div class="container" style="margin-top:10px">
+        <h2 class="text-center" style="font-family : Monotype Corsiva ; color : red"><strong>Add</strong> Vehicle Detail
+        </h2>
+
+        <div class="form-group">
+            <form method=post action="add_vehicle" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label><b>Username</b></label>
+                <input type="text" name="u_name" placeholder="Username" class="form-control"
+                    value="{{request.user.username}}" readonly>
+
+                <label><b>Vehicle Category</b></label>
+                <select id="categoryDropdown" name="category" class="form-control" onchange="showPrice()">
+                    <option value="">---Select Vehicle Category---</option>
+                    {% for i in category1 %}
+                    <option value="{{i.categoryname}}">{{i.categoryname}}</option>
+
+                    {% endfor %}
+                </select>
+
+                <label><b>Vehicle Company</b></label>
+                <input type="text" name="vehiclecompany" placeholder="Vehicle Company" class="form-control" required="">
+
+                <label><b>Registration Number</b></label>
+
+                <input type="text" name="regno" placeholder="Registration Number" class="form-control" required="">
+
+                <label><b>Owner Name</b></label>
+                <input type="text" name="ownername" placeholder="Owner Name" class="form-control" required="">
+
+                <label><b>Owner Contact Number</b></label>
+                <input type="text" name="ownercontact" placeholder="Contact Number" maxlength="10" class="form-control"
+                    required="">
+
+                <label><b>Parking Date</b></label>
+                <input type="date" name="pdate" class="form-control" required="">
+
+                <label><b>In Time</b></label>
+                <input type="time" name="intime" placeholder="In Time" class="form-control" required="">
+
+                <br>
+                <input type="hidden" name="pricedisplay1" id="priceDisplay1" value="">
+                <h3 class="text-center" name="pricedisplay" id="priceDisplay"
+                    style="font-family : Monotype Corsiva ; color : red">
+                </h3>
+                <input type=submit name=submit value="checkout" class="btn btn-primary form-control">
+            </form>
+        </div>
+
+
+
+
+    </div>
+    {% include 'footer.html' %}
+
+</body>
+
+</html>
+<script>
+    function getCategoryPrice(categoryId) {
+        var categoryData = JSON.parse('{{ categories_json|escapejs }}');
+        for (var i = 0; i < categoryData.length; i++) {
+            if (categoryData[i].categoryname == categoryId) {
+                return categoryData[i].price;
+            }
+        }
+        return "";
+    }
+    function showPrice() {
+        var categoryId = document.getElementById("categoryDropdown").value;
+        if (categoryId) {
+            var categoryPrice = getCategoryPrice(categoryId);
+
+            document.getElementById("priceDisplay").innerHTML = "Price: " + categoryPrice;
+            document.getElementById("priceDisplay1").value = categoryPrice;
+
+        } else {
+            document.getElementById("priceDisplay").innerHTML = "";
+            document.getElementById("priceDisplay1").value = "";
+
+        }
+    }
+</script>
+{% if error == "no" %}
+<script>
+    alert('Vehicle Detail has been added');
+    {% if user.is_superuser %}
+    window.location = ('{% url 'manage_incomingvehicle' %}');
+    {% else %}
+    window.location = ('{% url 'show_bookings' %}');
+    {% endif %}
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Something Went Wrong. Please try again');
+</script>
+{% endif %}

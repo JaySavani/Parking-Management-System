@@ -1,0 +1,55 @@
+{% load static %}
+<title>Park Here</title>
+<video loop muted autoplay playsinline class="video">
+  <source src="{% static 'login/parking.mp4' %}" type="video/mp4" />
+</video>
+<link href="{% static 'login/index.css' %}" rel="stylesheet" />
+<div class="bg-heading">
+  <h2
+    class="w3-container w3-center w3-animate-zoom"
+    class="section"
+    style="font-size: 35px"
+  >
+    Online Car Parking Information Management System
+  </h2>
+</div>
+<div class="box">
+  <h2>Login Here</h2>
+  <form method="POST" action="login">
+    {% csrf_token %}
+    <div class="inputBox">
+      <input
+        type="text"
+        name="username"
+        required
+        onkeyup="this.setAttribute('value', this.value);"
+        value=""
+      />
+      <label>Username</label>
+    </div>
+    <div class="inputBox">
+      <input
+        type="password"
+        name="password"
+        required
+        onkeyup="this.setAttribute('value', this.value);"
+        value=""
+      />
+      <label>Password</label>
+    </div>
+    <input type="submit" name="sign-in" value="Sign In" />
+  </form>
+  <br />
+  <a href="register">Register?</a>
+  <div class="form-group" style="padding-top: 20px">
+    {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+
+      <div class="alert alert-success" style="color: red">{{ message }}</div>
+
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div>

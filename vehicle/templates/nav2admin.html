@@ -1,0 +1,66 @@
+<nav class="navbar fixed-top navbar-expand-sm navbar-dark pl-5" style="background-color: black;">
+<a class="navbar-brand mr-5 pr-5">
+Vehicle Parking
+</a>
+
+
+<button type = button class="navbar-toggler" data-toggle="collapse" data-target="#abc">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+
+<div class="collapse navbar-collapse" id="abc" >
+<ul class="navbar-nav pl-5 ml-5">
+<li class = "nav-item">
+<a href = "{% url 'admin_home' %}" class="nav-link" style = "color : white"><i class="fas fa-home">&nbsp;</i>Home</a>
+</li>
+
+
+<li class="nav-item dropdown">
+	  <a  href="#" class="nav-link dropdown-toggle" style="color:white;"  data-toggle="dropdown">Category</a>
+
+	  <div class="dropdown-menu">
+	  <a class="dropdown-item" href="{% url 'add_category' %}">Add Category</a>
+	    <a class="dropdown-item" href="{% url 'manage_category' %}">Manage Category</a>
+	 </div>
+	 </li>
+
+
+<li class="nav-item dropdown">
+	  <a  href="#" class="nav-link dropdown-toggle" style="color:white;"  data-toggle="dropdown">Vehicle</a>
+
+	  <div class="dropdown-menu">
+	  <a class="dropdown-item" href="{% url 'add_vehicle' %}">Add Vehicle</a>
+	    <a class="dropdown-item" href="{% url 'manage_incomingvehicle' %}">Manage In Vehicle</a>
+		  <a class="dropdown-item" href="{% url 'manage_outgoingvehicle' %}">Manage Out Vehicle</a>
+	 </div>
+	 </li>
+
+
+
+
+<li class = "nav-item">
+<a href = "{% url 'search' %}" class="nav-link" style = "color : white">Search</a>
+</li>
+
+<li class="nav-item dropdown">
+	  <a  href="#" class="nav-link dropdown-toggle" style="color:white;"  data-toggle="dropdown">Reports</a>
+
+	  <div class="dropdown-menu">
+	  <a class="dropdown-item" href="{% url 'betweendate_report' %}">B/W Date Report</a>
+
+	 </div>
+	 </li>
+
+	<li class = "nav-item">
+		<a href = "{% url 'change_password' %}" class="nav-link" style = "color : white">Change Password</a>
+	</li>
+
+<li class = "nav-item">
+	<a href = "admin_logout" class="nav-link" style = "color : white"><i class="fas fa-sign-in-alt"></i> logout</a>
+ </li>
+
+</ul>
+</div>
+
+</nav>
